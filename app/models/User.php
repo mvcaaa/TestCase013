@@ -7,13 +7,6 @@ use yii\web\IdentityInterface;
 
 class User extends Object implements IdentityInterface
 {
-	public $id;
-	public $username;
-	public $password;
-	public $authKey;
-	public $accessToken;
-
-
 	private static $users = [
 		'100' => [
 			'id' => '100',
@@ -21,6 +14,8 @@ class User extends Object implements IdentityInterface
 			'password' => 'admin',
 			'authKey' => 'test100key',
 			'accessToken' => '100-token',
+			'name' => 'Andrey',
+			'age' => '37',
 		],
 		'101' => [
 			'id' => '101',
@@ -28,8 +23,35 @@ class User extends Object implements IdentityInterface
 			'password' => 'demo',
 			'authKey' => 'test101key',
 			'accessToken' => '101-token',
+			'name' => 'Natasha',
+			'age' => '16',
+		],
+		'102' => [
+			'id' => '102',
+			'username' => 'demo2',
+			'password' => 'demo2',
+			'authKey' => 'test101key',
+			'accessToken' => '101-token',
+			'name' => 'Marina',
+			'age' => '14',
+		],
+		'103' => [
+			'id' => '103',
+			'username' => 'demo3',
+			'password' => 'demo3',
+			'authKey' => 'test101key',
+			'accessToken' => '101-token',
+			'name' => 'Vera',
+			'age' => '33',
 		],
 	];
+	public $id;
+	public $username;
+	public $password;
+	public $authKey;
+	public $accessToken;
+	public $name;
+	public $age;
 
 	/**
 	 * @inheritdoc
