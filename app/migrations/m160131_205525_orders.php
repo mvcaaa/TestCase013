@@ -13,11 +13,11 @@ class m160131_205525_orders extends Migration
 			[
 				'id' => $this->primaryKey(),
 				'title' => $this->string(12),
-				'user_id' => $this->smallInteger(),
+				'client_id' => $this->integer(11),
 				'date' => $this->dateTime(),
 			]);
 
-		$this->batchInsert($this->tableName, ['title', 'user_id', 'date'], [
+		$this->batchInsert($this->tableName, ['title', 'client_id', 'date'], [
 			['Order1', 100, '2016-01-01'],
 			['Order2', 100, '2016-01-01'],
 			['Order3', 100, '2016-01-01'],

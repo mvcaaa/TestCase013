@@ -10,8 +10,10 @@ use yii\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $title
- * @property integer $user_id
+ * @property integer $client_id
  * @property string $date
+ *
+ * @property Clients $client
  */
 class Orders extends ActiveRecord
 {
@@ -29,7 +31,7 @@ class Orders extends ActiveRecord
 	public function rules()
 	{
 		return [
-			[['user_id'], 'integer'],
+			[['client_id'], 'integer'],
 			[['date'], 'safe'],
 			[['title'], 'string', 'max' => 12]
 		];
@@ -43,8 +45,16 @@ class Orders extends ActiveRecord
 		return [
 			'id' => 'ID',
 			'title' => 'Title',
-			'user_id' => 'User ID',
+			'client_id' => 'Client ID',
 			'date' => 'Date',
 		];
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getClient()
+	{
+		return $this->hasOne(Clients::className(), ['id' => 'client_id']);
 	}
 }
