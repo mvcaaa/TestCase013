@@ -2,10 +2,10 @@
 
 use yii\db\Migration;
 
-class m160131_212154_clients extends Migration
+class m160131_212154_client extends Migration
 {
 
-	private $tableName = 'clients';
+	private $tableName = 'client';
 
 	public function up()
 	{
@@ -25,7 +25,7 @@ class m160131_212154_clients extends Migration
 			['103', '103', 'Bob', '28'],
 		]);
 
-		$this->addForeignKey('orders_clients', 'orders', 'client_id', 'clients', 'id');
+		$this->addForeignKey('order_client', 'order', 'client_id', 'client', 'id');
 
 
 	}
@@ -33,7 +33,7 @@ class m160131_212154_clients extends Migration
 	public function down()
 	{
 		$this->dropTable($this->tableName);
-		$this->dropForeignKey('orders_users', 'orders');
+		$this->dropForeignKey('order_user', 'order');
 	}
 
 }

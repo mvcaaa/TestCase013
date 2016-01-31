@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use DateTime;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -13,16 +14,16 @@ use yii\db\ActiveRecord;
  * @property integer $client_id
  * @property string $date
  *
- * @property Clients $client
+ * @property Client $client
  */
-class Orders extends ActiveRecord
+class Order extends ActiveRecord
 {
 	/**
 	 * @inheritdoc
 	 */
 	public static function tableName()
 	{
-		return 'orders';
+		return 'order';
 	}
 
 	/**
@@ -55,6 +56,16 @@ class Orders extends ActiveRecord
 	 */
 	public function getClient()
 	{
-		return $this->hasOne(Clients::className(), ['id' => 'client_id']);
+		return $this->hasOne(Client::className(), ['id' => 'client_id']);
+	}
+
+	/**
+	 * Определяет, был ли сделан заказ сегодня.
+	 * Может быть не совсем оптимально - сравниваются две строки.
+	 * @return bool
+	 */
+	public function isOrderedToday()
+	{
+		return ((new DateTime($this->date))->format("Y-m-d") == (new DateTime())->format("Y-m-d"));
 	}
 }
