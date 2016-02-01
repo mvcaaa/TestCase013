@@ -2,7 +2,7 @@
 > А также таблица продаж(sales): id, cust_id, date, summ_pay
 > Необходимо вывести имя лучшего покупателя. Один покупатель мог сделать несколько покупок.
 
-1. Запрос, возвращающий Имя и уплаченную сумму
+- Запрос, возвращающий Имя и уплаченную сумму
 ```SQL
 SELECT c.name, SUM(s.summ_pay) AS total_spent FROM sales s, customer c
 	WHERE c.id = s.cust_id
@@ -10,7 +10,7 @@ SELECT c.name, SUM(s.summ_pay) AS total_spent FROM sales s, customer c
 	ORDER BY total_spent DESC
 	LIMIT 1;
 ```
-2. Запрос, возвращающий только имя
+- Запрос, возвращающий только имя (Через вложенный селект вобщем-то например)
 ```sql
 SELECT name
 FROM customer 
