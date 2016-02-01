@@ -1,7 +1,7 @@
 [comment]: # (Created by Astashov Andrey <a.astashov@straetus.com>)
 [comment]: # (Date: 30.01.2016 / ‏‎22:40)
 
-- Схема:
+Схема:
 
 ```sql
 CREATE TABLE books (
@@ -33,7 +33,7 @@ INSERT INTO books_authors (bo_id, au_id) VALUES
    (1,1), (1,2), (1,3),(2,4),(3,3), (3,4), (3,1), (4,1), (4,2);
 ```
 
-- Запросы
+Запросы
 ```sql
 # Запрос, выводящий id Книг и количество авторов
 SELECT bo_id, count(*) AS Count FROM books_authors GROUP BY bo_id HAVING Count = 3;
