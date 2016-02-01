@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property integer $age
  *
  * @property Order[] $orders
+ * @property mixed todayOrders
  */
 class Client extends ActiveRecord
 {
@@ -51,21 +52,29 @@ class Client extends ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getOrders()
-	{
-		return $this->hasMany(Order::className(), ['client_id' => 'id']);
-	}
-
-	/**
 	 * Возвращает десять последних заявок за сегодня
 	 * @return \yii\db\ActiveQuery
 	 */
 	public function getTenTodayOrders()
 	{
-		return $this->hasMany(Order::className(), ['client_id' => 'id'])
-			->having('DATE(date) = DATE(NOW())')->limit(10);
+		return $this->getTodayOrders()->limit(10);
+	}
+
+	/**
+	 * Возвращает сегодняшние заказы
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getTodayOrders()
+	{
+		return $this->getOrders()->having('DATE(date) = DATE(NOW())');
+	}
+
+	/**
+	 * @return \yii\db\ActiveQuery
+	 */
+	public function getOrders()
+	{
+		return $this->hasMany(Order::className(), ['client_id' => 'id']);
 	}
 
 	public function extraFields()
@@ -102,8 +111,6 @@ class Client extends ActiveRecord
 	 */
 	public function getIsActiveToday()
 	{
-		foreach ($this->orders as $order)
-			if ($order->isOrderedToday()) return true;
-		return false;
+		return (count($this->todayOrders) ? true : false);
 	}
 }

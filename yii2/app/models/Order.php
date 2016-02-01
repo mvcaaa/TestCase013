@@ -59,13 +59,4 @@ class Order extends ActiveRecord
 		return $this->hasOne(Client::className(), ['id' => 'client_id']);
 	}
 
-	/**
-	 * Определяет, был ли сделан заказ сегодня.
-	 * Может быть не совсем оптимально - сравниваются две строки.
-	 * @return bool
-	 */
-	public function isOrderedToday()
-	{
-		return ((new DateTime($this->date))->format("Y-m-d") == (new DateTime())->format("Y-m-d"));
-	}
 }
