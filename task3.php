@@ -2,6 +2,9 @@
 /**
  * Created by Astashov Andrey <a.astashov@straetus.com>
  * Date: 30.01.2016 / 20:49
+ *
+ * Дан текст. Заменить все email в этом тексте на '<a href=’mailto:...’>[email]</a>'. Например, 'пишите мне на vasya@gmail.com по любому вопросу' преобразуется в 'пишите мне на <a href=’mailto:vasya@gmail.com’>[email]</a> по любому вопросу'.
+ * 
  */
 
 
